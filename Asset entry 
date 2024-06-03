@@ -1,0 +1,44 @@
+class Asset:
+    def __init__(self, asset_id, name, value, description):
+        self.asset_id = asset_id
+        self.name = name
+        self.value = value
+        self.description = description
+
+    def __str__(self):
+        return f"ID: {self.asset_id}, Name: {self.name}, Value: ${self.value}, Description: {self.description}"
+
+
+class AssetManager:
+    def __init__(self):
+        self.assets = {}
+
+    def add_asset(self, asset_id, name, value, description):
+        if asset_id in self.assets:
+            print(f"Asset with ID {asset_id} already exists.")
+        else:
+            self.assets[asset_id] = Asset(asset_id, name, value, description)
+            print(f"Asset with ID {asset_id} added.")
+
+    def remove_asset(self, asset_id):
+        if asset_id in self.assets:
+            del self.assets[asset_id]
+            print(f"Asset with ID {asset_id} removed.")
+        else:
+            print(f"No asset found with ID {asset_id}.")
+
+    def list_assets(self):
+        if self.assets:
+            for asset in self.assets.values():
+                print(asset)
+        else:
+            print("No assets available.")
+
+
+# Example usage:
+manager = AssetManager()
+manager.add_asset(1, "Laptop", 1200, "Dell XPS 13")
+manager.add_asset(2, "Phone", 800, "iPhone 12")
+manager.list_assets()
+manager.remove_asset(1)
+manager.list_assets()
